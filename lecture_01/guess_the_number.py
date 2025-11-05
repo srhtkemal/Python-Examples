@@ -1,40 +1,38 @@
 from random import randint
-random_number = randint(0, 999)
-attempts = randint(8, 15)
-current_attempt = attempts
-# print(random_number)
+target_number = randint(0, 999)
+attempts = randint(5, 10)
+print(target_number)
 print(f"I guessed my number! \nI give you {attempts} chances!")
 lowest_possible_range = 0
 highest_possible_range = 999
 
-while (current_attempt != 0):
+for i in range(1, attempts+1):
     try:
         guessed_number = int(input(
             f"\nRange: ({lowest_possible_range}, {highest_possible_range})\nYour guess: "))
     except ValueError:
         print("Please enter a valid integer.")
         continue
-    if (guessed_number > random_number):
+    if (guessed_number > target_number):
         print("Lower!")
         if (guessed_number >= highest_possible_range):
             print(
-                "Dumass you already know highest range is lower than your current guess!")
+                "You already know highest range is lower than your current guess!")
         else:
             highest_possible_range = guessed_number
 
-    elif (guessed_number < random_number):
+    elif (guessed_number < target_number):
         print("Higher!")
         if (guessed_number <= lowest_possible_range):
             print(
-                "Dumass you already know lowest range is higher than your current guess!")
+                "You already know lowest range is higher than your current guess!")
         else:
             lowest_possible_range = guessed_number
 
     else:
         print(
-            f"Yes you won! You guessed the random number in {attempts-current_attempt+1} tries!")
+            f"Yes you won! You guessed the random number in {i} tries!")
         break
-    current_attempt -= 1
-    print(f"You have {current_attempt} chances remaining!")
+    print(f"You have {attempts-i} chances remaining!")
 else:
-    print(f"You lost my guessed number was {random_number}")
+    print(f"You lost, my guessed number was {target_number}")
