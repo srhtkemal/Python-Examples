@@ -4,22 +4,30 @@ text = open(
 text = str(text.read())
 text_split = text.split()
 word_count = int(0)
-character_count=int(0)
+character_count = int(0)
 longest_word = text_split[0]
 shortest_word = text_split[0]
 most_common_word = text_split[0]
 most_common_word_count = int(0)
 count_of_each_word = {}
 
-print(text_split)
 
 for i in text_split:
+    if (i[0] == '.' or i[0] == ',' or i[0] == '!' or i[0] == '?' or i[0] == ';' or i[0] == '"' or i[0] == "'"):
+        i = i[1:]
+    if (i.isnumeric()):
+        print(i)
+        continue
+
+    if (i[len(i)-1] == '.' or i[len(i)-1] == ',' or i[len(i)-1] == '!' or i[len(i)-1] == '?' or i[len(i)-1] == ';'):
+        i = i[:-1]
     if (len(i) > len(longest_word)):
         longest_word = i
     if (len(i) < len(shortest_word)):
         shortest_word = i
     word_count += 1
-    character_count+=len(i)
+
+    character_count += len(i)
     if i in count_of_each_word:
         count_of_each_word[i] += 1
     else:
@@ -29,6 +37,7 @@ for i in text_split:
         if (word_count > most_common_word_count):
             most_common_word_count = word_count
             most_common_word = word
+    # print(i)
 
 print(f"--- Text Report ---\n"
       f"Total Word Count: {word_count}\n"
