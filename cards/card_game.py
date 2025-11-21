@@ -36,7 +36,7 @@ def score_to_grouped_card(card: int) -> str:
         return "Invalid Card"
     if (card > 47):
         card -= 52  # it is -52 bc when we divide by 4, it gives us extra -1; so when we add +2, it will appear as +1
-    if ((card) % 4 == 0):  # card//4+1 bc index starts at 0.  0=>C2, 4=>S2
+    if ((card) % 4 == 0):  # card//4+1 bc index starts at 0.  0=>C2, 3=>S2
         return f"C{card//4+2}"  # Clubs
     elif ((card) % 4 == 1):
         return f"D{card//4+2}"  # Diamonds
@@ -78,14 +78,14 @@ def grouped_card_to_score(grouped_card: str) -> int:
 
 # Testing the functions
 
-not_suffeled_deck = [i for i in range(52)]  # 0-51
-shuffled_deck_as_new_list = shuffle_as_new_list(not_suffeled_deck.copy())
+not_shuffeled_deck = [i for i in range(52)]  # 0-51
+shuffled_deck_as_new_list = shuffle_as_new_list(not_shuffeled_deck.copy())
 shuffled_deck_by_adding_end_of_list = shuffle_by_adding_end_of_list(
-    not_suffeled_deck.copy())
-print("Not Shuffled Deck: ", not_suffeled_deck)
+    not_shuffeled_deck.copy())
+print("Not Shuffled Deck: ", not_shuffeled_deck)
 print("\nShuffled Deck as New List: ", shuffled_deck_as_new_list)
 print("\nShuffled Deck by Adding End of List: ",
-      shuffled_deck_by_adding_end_of_list)  
+      shuffled_deck_by_adding_end_of_list)
 print("\nShared Cards among 13 players: ",
       share_cards_among_x_players(13, shuffled_deck_as_new_list.copy()))
 
